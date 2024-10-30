@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burp Challenge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Hola {{ user }}!</h1>
+        <p>View: {{ view }}</p>
+        <p>Random CPF: {{ cpf }}</p>    
+        <form id="main_form" method="post">
+            <label>¿Con qué habilidad te gustaría enfrentar el próximo desafío de trabajo?</label>
+            <button type="submit" name="action" value="genio">1. Resolver problemas como un genio</button>
+            <br>
+            <button type="submit" name="action" value="no olvidar">2. Nunca olvidar un solo detalle</button>
+        </form>
+        <br><br>
+        <a href="/">Regresar</a>
+    </div>
+
+    <script>
+        document.getElementById('main_form').addEventListener('submit', function(event) {
+            var action = event.submitter.value;
+            var form = event.target;
+            
+            if (action === 'genio') {
+                form.action = '/genius';
+            } else if (action === 'no olvidar') {
+                form.action = '/notforget';
+            }
+        });
+    </script>
+
+</body>
+</html>
